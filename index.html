@@ -1,81 +1,82 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>2 เดือนของเรา 🤍</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ถึงมิ้น 🤍</title>
 
 <style>
 body {
-    margin: 0;
-    height: 100vh;
-    background: linear-gradient(135deg, #fff1eb, #fbd3e9);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-family: 'Segoe UI', sans-serif;
-    overflow: hidden;
+  margin: 0;
+  height: 100vh;
+  background: linear-gradient(135deg,#ffeef2,#ffd6e8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Segoe UI', sans-serif;
+  overflow: hidden;
+  transition: background 1s;
 }
 
 .card {
-    background: #ffffff;
-    padding: 24px 20px;
-    border-radius: 24px;
-    width: 90%;
-    max-width: 360px;
-    text-align: center;
-    box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+  background: white;
+  width: 90%;
+  max-width: 360px;
+  padding: 24px;
+  border-radius: 26px;
+  text-align: center;
+  box-shadow: 0 20px 45px rgba(0,0,0,.18);
+  transition: all 0.6s ease;
 }
 
 img {
-    width: 70%;
-    border-radius: 18px;
-    margin-bottom: 16px;
+  width: 70%;
+  border-radius: 20px;
+  margin-bottom: 16px;
 }
 
 .text {
-    font-size: 1.25rem;
-    line-height: 1.7;
-    min-height: 100px;
-    color: #6b4f4f;
+  font-size: 1.25rem;
+  line-height: 1.7;
+  min-height: 120px;
+  color: #6b4f4f;
 }
 
-.hint {
-    font-size: 0.8rem;
-    opacity: 0.6;
-    margin-top: 10px;
+.wait {
+  font-size: .9rem;
+  opacity: .6;
+  margin-top: 8px;
+}
+
+button {
+  margin-top: 14px;
+  padding: 10px 20px;
+  border-radius: 16px;
+  border: none;
+  background: #f4acb7;
+  color: white;
+  font-size: 1rem;
+}
+
+input {
+  width: 90%;
+  padding: 10px;
+  border-radius: 14px;
+  border: 1px solid #ddd;
+  font-size: 1rem;
+  margin-top: 12px;
 }
 
 /* หัวใจลอย */
 .heart {
-    position: fixed;
-    bottom: 0;
-    font-size: 20px;
-    animation: floatUp 2s ease-out forwards;
+  position: fixed;
+  bottom: -20px;
+  font-size: 20px;
+  animation: floatUp 3s ease-out forwards;
 }
-
 @keyframes floatUp {
-    0% { opacity: 1; transform: translateY(0) scale(1); }
-    100% { opacity: 0; transform: translateY(-150px) scale(1.5); }
-}
-
-input {
-    width: 90%;
-    padding: 10px;
-    border-radius: 12px;
-    border: 1px solid #ddd;
-    font-size: 1rem;
-    margin-top: 12px;
-}
-
-button {
-    margin-top: 12px;
-    padding: 10px 16px;
-    border-radius: 14px;
-    border: none;
-    background: #f4acb7;
-    color: white;
-    font-size: 1rem;
+  0% { transform: translateY(0) scale(1); opacity: 1; }
+  100% { transform: translateY(-160px) scale(1.8); opacity: 0; }
 }
 </style>
 </head>
@@ -83,76 +84,115 @@ button {
 <body>
 
 <div class="card" id="card">
-    <img src="https://i.imgur.com/7kQEsHU.png" alt="bear" />
-    <div class="text" id="text">กดเบา ๆ นะที่รัก 🤍</div>
-    <div class="hint">(จากหมาเด็กของมิ้น)</div>
+  <img src="bear.png" onerror="this.style.display='none'">
+  <div class="text" id="text">กดเบา ๆ นะที่รัก 🤍</div>
+  <div class="wait" id="wait"></div>
 </div>
 
-<audio autoplay loop>
-    <source src="รักมากนะ (1).mp3" type="audio/mpeg">
+<audio id="bgm" autoplay loop>
+  <source src="love.mp3" type="audio/mpeg">
 </audio>
 
 <script>
 const messages = [
-    "สวัสดีตะเอง 🤍",
-    "เผลอแป๊บเดียว เราก็ครบ 2 เดือนแล้วนะ",
-    "2 เดือนที่หมาเด็กคนนี้",
-    "มีความสุขขึ้นแบบไม่รู้ตัว",
-    "เพราะมีมิ้นอยู่ข้าง ๆ",
-    "อยู่ด้วยกันแบบธรรมดา",
-    "แต่สำหรับเบิร์ด มันพิเศษมากเลยนะ",
-    "ขอบคุณที่เป็นที่รักของเรา",
-    "ขอบคุณที่เป็นเจ๊มิ้นคนเก่ง",
-    "เลี้ยงข้าว เลี้ยงขนม",
-    "แล้วยังยอมเลี้ยงหมาเด็กอีก",
-    "หมาเด็กอาจจะกวน",
-    "อาจจะงอแง",
-    "แต่รักมิ้นจริง ๆ นะ",
-    "รักแบบตั้งใจ",
-    "รักแบบอยากอยู่ด้วยให้นานที่สุด",
-    "ก่อนจะจบ…",
-    "หมาเด็กมีคำถามจะถามมิ้น 🤍",
-    "ถ้ามิ้นต้องตอบ…"
+"สวัสดีมิ้น 🤍",
+"วันนี้หมาเด็กตั้งใจทำอะไรให้",
+"ไม่ใช่ของแพง",
+"ไม่ใช่ของใหญ่",
+"แต่เป็นความรู้สึกทั้งหมดของเบิร์ด",
+"2 เดือนที่ผ่านมา",
+"มีทั้งวันที่ยิ้ม",
+"มีทั้งวันที่งอแง",
+"แต่ทุกวันมีมิ้นอยู่ข้าง ๆ",
+"มิ้นรู้ไหม",
+"แค่นั้นก็พอแล้ว",
+"เบิร์ดอาจกวน",
+"อาจดื้อ",
+"อาจเป็นหมาเด็กจริง ๆ",
+"แต่หมาเด็กคนนี้",
+"รักมิ้นมากจริง ๆ",
+"รักแบบไม่เผื่อใจให้ใคร",
+"รักแบบตั้งใจดูแล",
+"อยากอยู่ข้าง ๆ ให้นานที่สุด",
+"เพลงกำลังเล่นอยู่",
+"แต่ความรู้สึกนี้",
+"ไม่เคยวนซ้ำ",
+"มันเพิ่มขึ้นทุกวัน",
+"ทุกครั้งที่ได้มองมิ้น",
+"ทุกครั้งที่ได้คุยกัน",
+"ทุกครั้งที่ได้จับมือ",
+"ขอบคุณที่เลือกเบิร์ด",
+"ขอบคุณที่ยังอยู่ด้วยกัน",
+"ก่อนเพลงจะจบ",
+"หมาเด็กมีคำถามจะถามมิ้น 🤍"
 ];
 
 let index = 0;
+let waiting = false;
+let clickCount = 0;
+
 const textEl = document.getElementById("text");
+const waitEl = document.getElementById("wait");
 const card = document.getElementById("card");
 
 card.addEventListener("click", () => {
-    createHeart();
-    index++;
+  if (waiting) return;
 
-    if (index < messages.length) {
-        textEl.textContent = messages[index];
-    } 
-    else if (index === messages.length) {
-        card.innerHTML = `
-            <div class="text">มิ้นอยากไปกับเบิร์ด<br>ในเดือนต่อ ๆ ไปไหม 🤍</div>
-            <input placeholder="พิมพ์ตอบหมาเด็กตรงนี้เลย..." />
-            <button onclick="finish()">ส่งคำตอบ 💕</button>
-        `;
-    }
-});
+  clickCount++;
 
-function createHeart() {
+  // เปลี่ยนสีพื้นหลังทุกครั้ง
+  const colors = [
+    "#ffeef2","#ffd6e8","#fff0f5","#ffe4ec","#fff5fa"
+  ];
+  document.body.style.background =
+    `linear-gradient(135deg,${colors[Math.floor(Math.random()*colors.length)]},#ffd6e8)`;
+
+  // เอฟเฟกต์การ์ด
+  card.style.transform = `scale(${1 + clickCount*0.01}) rotate(${Math.random()*2-1}deg)`;
+
+  // หัวใจลอยมากขึ้นเรื่อย ๆ
+  for (let i=0;i<clickCount;i++){
     const heart = document.createElement("div");
     heart.className = "heart";
-    heart.textContent = "💗";
-    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.left = Math.random()*100 + "vw";
+    heart.textContent = ["💗","🤍","💖","💕"][Math.floor(Math.random()*4)];
     document.body.appendChild(heart);
-    setTimeout(() => heart.remove(), 2000);
-}
+    setTimeout(()=>heart.remove(),3000);
+  }
 
-function finish() {
+  if (index < messages.length) {
+    waiting = true;
+    waitEl.textContent = "กำลังคิดถึงมิ้นอยู่… 🤍";
+
+    setTimeout(() => {
+      textEl.textContent = messages[index];
+      waitEl.textContent = "";
+      index++;
+      waiting = false;
+    }, 3000);
+  } else {
     card.innerHTML = `
-        <div class="text">
-            หมาขอบคุณคำตอบนะ 🤍<br>
-            สุขสันต์วันครบรอบ 2 เดือน<br>
-            รักมากนะ<br><br>
-            — หมาเด็กของมิ้น 🐶
-        </div>
+      <div class="text">
+        มิ้นอยากมีเบิร์ด<br>
+        อยู่ข้าง ๆ ต่อจากนี้ไหม 🤍
+      </div>
+      <input id="answer" placeholder="พิมพ์คำตอบตรงนี้นะ…">
+      <button onclick="sendLine()">ส่งให้เบิร์ด 💕</button>
+      <div class="wait">(กดแล้วจะเปิด LINE ให้อัตโนมัติ)</div>
     `;
+  }
+});
+
+function sendLine() {
+  const ans = document.getElementById("answer").value;
+  const msg =
+`คำตอบของมิ้น 🤍
+"${ans}"
+
+สุขสันต์วันครบรอบ 2 เดือนนะ
+— หมาเด็กของมิ้น 🐶`;
+  window.location.href =
+    "https://line.me/R/msg/text/?" + encodeURIComponent(msg);
 }
 </script>
 
