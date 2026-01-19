@@ -1,201 +1,135 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ถึงมิ้น 🤍</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>ถึงที่รักของเขา 💖</title>
 
 <style>
 body {
   margin: 0;
   height: 100vh;
-  background: linear-gradient(135deg,#ffeef2,#ffd6e8);
+  background: linear-gradient(135deg, #ffe6ec, #ffd6e0);
   display: flex;
   justify-content: center;
   align-items: center;
   font-family: 'Segoe UI', sans-serif;
   overflow: hidden;
-  transition: background 1s;
 }
 
 .card {
   background: white;
   width: 90%;
-  max-width: 360px;
+  max-width: 380px;
   padding: 24px;
-  border-radius: 26px;
+  border-radius: 28px;
   text-align: center;
-  box-shadow: 0 20px 45px rgba(0,0,0,.18);
-  transition: all 0.6s ease;
+  box-shadow: 0 25px 50px rgba(0,0,0,.15);
+  animation: pop 0.8s ease;
+}
+
+@keyframes pop {
+  0% { transform: scale(.8); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
 }
 
 img {
-  width: 70%;
+  width: 80%;
   border-radius: 20px;
   margin-bottom: 16px;
 }
 
 .text {
   font-size: 1.25rem;
-  line-height: 1.7;
+  line-height: 1.8;
+  color: #ff5f8f;
   min-height: 120px;
-  color: #6b4f4f;
 }
 
 .wait {
   font-size: .9rem;
   opacity: .6;
-  margin-top: 8px;
 }
 
 button {
-  margin-top: 14px;
-  padding: 10px 20px;
+  margin-top: 18px;
+  padding: 12px 24px;
   border-radius: 16px;
   border: none;
-  background: #f4acb7;
+  background: #ff7aa2;
   color: white;
   font-size: 1rem;
 }
 
-input {
-  width: 90%;
-  padding: 10px;
-  border-radius: 14px;
-  border: 1px solid #ddd;
-  font-size: 1rem;
-  margin-top: 12px;
-}
-
-/* หัวใจลอย */
 .heart {
   position: fixed;
   bottom: -20px;
-  font-size: 20px;
-  animation: floatUp 3s ease-out forwards;
+  font-size: 22px;
+  animation: floatUp 4s linear forwards;
 }
+
 @keyframes floatUp {
   0% { transform: translateY(0) scale(1); opacity: 1; }
-  100% { transform: translateY(-160px) scale(1.8); opacity: 0; }
+  100% { transform: translateY(-120vh) scale(1.8); opacity: 0; }
 }
 </style>
 </head>
 
 <body>
 
-<div class="card" id="card">
-  <img src="bear.png" onerror="this.style.display='none'">
-  <div class="text" id="text">กดเบา ๆ นะที่รัก 🤍</div>
-  <div class="wait" id="wait"></div>
-</div>
-
-<audio id="bgm" autoplay loop>
-  <source src="love.mp3" type="audio/mpeg">
+<audio autoplay loop>
+  <source src="รักมากนะ (1).mp3" type="audio/mpeg">
 </audio>
+
+<div class="card">
+  <img src="file_00000004dc072078dd50d9991ff086f.png" alt="ที่รัก">
+  <div class="text" id="text">กดเบา ๆ นะที่รัก 💕</div>
+  <div class="wait" id="wait"></div>
+  <button onclick="next()">กดตรงนี้ 💖</button>
+</div>
 
 <script>
 const messages = [
-"สวัสดีมิ้น 🤍",
-"วันนี้หมาเด็กตั้งใจทำอะไรให้",
-"ไม่ใช่ของแพง",
-"ไม่ใช่ของใหญ่",
-"แต่เป็นความรู้สึกทั้งหมดของเบิร์ด",
-"2 เดือนที่ผ่านมา",
-"มีทั้งวันที่ยิ้ม",
-"มีทั้งวันที่งอแง",
-"แต่ทุกวันมีมิ้นอยู่ข้าง ๆ",
-"มิ้นรู้ไหม",
-"แค่นั้นก็พอแล้ว",
-"เบิร์ดอาจกวน",
-"อาจดื้อ",
-"อาจเป็นหมาเด็กจริง ๆ",
-"แต่หมาเด็กคนนี้",
-"รักมิ้นมากจริง ๆ",
-"รักแบบไม่เผื่อใจให้ใคร",
-"รักแบบตั้งใจดูแล",
-"อยากอยู่ข้าง ๆ ให้นานที่สุด",
-"เพลงกำลังเล่นอยู่",
-"แต่ความรู้สึกนี้",
-"ไม่เคยวนซ้ำ",
-"มันเพิ่มขึ้นทุกวัน",
-"ทุกครั้งที่ได้มองมิ้น",
-"ทุกครั้งที่ได้คุยกัน",
-"ทุกครั้งที่ได้จับมือ",
-"ขอบคุณที่เลือกเบิร์ด",
-"ขอบคุณที่ยังอยู่ด้วยกัน",
-"ก่อนเพลงจะจบ",
-"หมาเด็กมีคำถามจะถามมิ้น 🤍"
+  "ที่รักรู้ไหม… ตั้งแต่มีเธอ เขายิ้มง่ายขึ้นมากเลยนะ 😊",
+  "2 เดือนอาจดูไม่นาน แต่สำหรับเขา… มันโคตรพิเศษเลย",
+  "เธอคือความสบายใจ ในวันที่เขาเหนื่อยที่สุด",
+  "ขอบคุณที่อยู่ ขอบคุณที่เข้าใจ และขอบคุณที่รักเขา",
+  "บางทีเขาอาจกวน อาจดื้อ แต่รักเธอจริงนะ",
+  "ที่เรียกว่าที่รัก เพราะเธอสำคัญกว่าคำว่ารัก",
+  "เขาอยากมีเธอในทุกเดือน ทุกปี และทุกวันต่อจากนี้",
+  "สุขสันต์ครบรอบ 2 เดือนนะ… ที่รักของเขา 💖",
+  "รักมากนะ ❤️ จากเขา… คนที่โชคดีที่สุดที่มีเธอ"
 ];
 
-let index = 0;
-let waiting = false;
-let clickCount = 0;
+let i = 0;
+const text = document.getElementById("text");
+const wait = document.getElementById("wait");
 
-const textEl = document.getElementById("text");
-const waitEl = document.getElementById("wait");
-const card = document.getElementById("card");
+function next() {
+  if (i >= messages.length) return;
 
-card.addEventListener("click", () => {
-  if (waiting) return;
+  text.innerHTML = "";
+  wait.innerHTML = "รอสักนิดนะ… 💗";
 
-  clickCount++;
+  setTimeout(() => {
+    wait.innerHTML = "";
+    text.innerHTML = messages[i];
+    i++;
+    spawnHearts();
+  }, 3000);
+}
 
-  // เปลี่ยนสีพื้นหลังทุกครั้ง
-  const colors = [
-    "#ffeef2","#ffd6e8","#fff0f5","#ffe4ec","#fff5fa"
-  ];
-  document.body.style.background =
-    `linear-gradient(135deg,${colors[Math.floor(Math.random()*colors.length)]},#ffd6e8)`;
-
-  // เอฟเฟกต์การ์ด
-  card.style.transform = `scale(${1 + clickCount*0.01}) rotate(${Math.random()*2-1}deg)`;
-
-  // หัวใจลอยมากขึ้นเรื่อย ๆ
-  for (let i=0;i<clickCount;i++){
-    const heart = document.createElement("div");
-    heart.className = "heart";
-    heart.style.left = Math.random()*100 + "vw";
-    heart.textContent = ["💗","🤍","💖","💕"][Math.floor(Math.random()*4)];
-    document.body.appendChild(heart);
-    setTimeout(()=>heart.remove(),3000);
+function spawnHearts() {
+  for (let j = 0; j < 8; j++) {
+    const h = document.createElement("div");
+    h.className = "heart";
+    h.innerHTML = "💗";
+    h.style.left = Math.random() * 100 + "vw";
+    document.body.appendChild(h);
+    setTimeout(() => h.remove(), 4000);
   }
-
-  if (index < messages.length) {
-    waiting = true;
-    waitEl.textContent = "กำลังคิดถึงมิ้นอยู่… 🤍";
-
-    setTimeout(() => {
-      textEl.textContent = messages[index];
-      waitEl.textContent = "";
-      index++;
-      waiting = false;
-    }, 3000);
-  } else {
-    card.innerHTML = `
-      <div class="text">
-        มิ้นอยากมีเบิร์ด<br>
-        อยู่ข้าง ๆ ต่อจากนี้ไหม 🤍
-      </div>
-      <input id="answer" placeholder="พิมพ์คำตอบตรงนี้นะ…">
-      <button onclick="sendLine()">ส่งให้เบิร์ด 💕</button>
-      <div class="wait">(กดแล้วจะเปิด LINE ให้อัตโนมัติ)</div>
-    `;
-  }
-});
-
-function sendLine() {
-  const ans = document.getElementById("answer").value;
-  const msg =
-`คำตอบของมิ้น 🤍
-"${ans}"
-
-สุขสันต์วันครบรอบ 2 เดือนนะ
-— หมาเด็กของมิ้น 🐶`;
-  window.location.href =
-    "https://line.me/R/msg/text/?" + encodeURIComponent(msg);
 }
 </script>
 
 </body>
 </html>
-<!-- force build -->
