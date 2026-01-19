@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2 เดือนของเรา 🤍</title>
+
+<style>
+body {
+    margin: 0;
+    height: 100vh;
+    background: linear-gradient(135deg, #fff1eb, #fbd3e9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Segoe UI', sans-serif;
+    overflow: hidden;
+}
+
+.card {
+    background: #ffffff;
+    padding: 24px 20px;
+    border-radius: 24px;
+    width: 90%;
+    max-width: 360px;
+    text-align: center;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+}
+
+img {
+    width: 70%;
+    border-radius: 18px;
+    margin-bottom: 16px;
+}
+
+.text {
+    font-size: 1.25rem;
+    line-height: 1.7;
+    min-height: 100px;
+    color: #6b4f4f;
+}
+
+.hint {
+    font-size: 0.8rem;
+    opacity: 0.6;
+    margin-top: 10px;
+}
+
+/* หัวใจลอย */
+.heart {
+    position: fixed;
+    bottom: 0;
+    font-size: 20px;
+    animation: floatUp 2s ease-out forwards;
+}
+
+@keyframes floatUp {
+    0% { opacity: 1; transform: translateY(0) scale(1); }
+    100% { opacity: 0; transform: translateY(-150px) scale(1.5); }
+}
+
+input {
+    width: 90%;
+    padding: 10px;
+    border-radius: 12px;
+    border: 1px solid #ddd;
+    font-size: 1rem;
+    margin-top: 12px;
+}
+
+button {
+    margin-top: 12px;
+    padding: 10px 16px;
+    border-radius: 14px;
+    border: none;
+    background: #f4acb7;
+    color: white;
+    font-size: 1rem;
+}
+</style>
+</head>
+
+<body>
+
+<div class="card" id="card">
+    <img src="https://i.imgur.com/7kQEsHU.png" alt="bear" />
+    <div class="text" id="text">กดเบา ๆ นะที่รัก 🤍</div>
+    <div class="hint">(จากหมาเด็กของมิ้น)</div>
+</div>
+
+<audio autoplay loop>
+    <source src="รักมากนะ (1).mp3" type="audio/mpeg">
+</audio>
+
+<script>
+const messages = [
+    "สวัสดีตะเอง 🤍",
+    "เผลอแป๊บเดียว เราก็ครบ 2 เดือนแล้วนะ",
+    "2 เดือนที่หมาเด็กคนนี้",
+    "มีความสุขขึ้นแบบไม่รู้ตัว",
+    "เพราะมีมิ้นอยู่ข้าง ๆ",
+    "อยู่ด้วยกันแบบธรรมดา",
+    "แต่สำหรับเบิร์ด มันพิเศษมากเลยนะ",
+    "ขอบคุณที่เป็นที่รักของเรา",
+    "ขอบคุณที่เป็นเจ๊มิ้นคนเก่ง",
+    "เลี้ยงข้าว เลี้ยงขนม",
+    "แล้วยังยอมเลี้ยงหมาเด็กอีก",
+    "หมาเด็กอาจจะกวน",
+    "อาจจะงอแง",
+    "แต่รักมิ้นจริง ๆ นะ",
+    "รักแบบตั้งใจ",
+    "รักแบบอยากอยู่ด้วยให้นานที่สุด",
+    "ก่อนจะจบ…",
+    "หมาเด็กมีคำถามจะถามมิ้น 🤍",
+    "ถ้ามิ้นต้องตอบ…"
+];
+
+let index = 0;
+const textEl = document.getElementById("text");
+const card = document.getElementById("card");
+
+card.addEventListener("click", () => {
+    createHeart();
+    index++;
+
+    if (index < messages.length) {
+        textEl.textContent = messages[index];
+    } 
+    else if (index === messages.length) {
+        card.innerHTML = `
+            <div class="text">มิ้นอยากไปกับเบิร์ด<br>ในเดือนต่อ ๆ ไปไหม 🤍</div>
+            <input placeholder="พิมพ์ตอบหมาเด็กตรงนี้เลย..." />
+            <button onclick="finish()">ส่งคำตอบ 💕</button>
+        `;
+    }
+});
+
+function createHeart() {
+    const heart = document.createElement("div");
+    heart.className = "heart";
+    heart.textContent = "💗";
+    heart.style.left = Math.random() * 100 + "vw";
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 2000);
+}
+
+function finish() {
+    card.innerHTML = `
+        <div class="text">
+            หมาขอบคุณคำตอบนะ 🤍<br>
+            สุขสันต์วันครบรอบ 2 เดือน<br>
+            รักมากนะ<br><br>
+            — หมาเด็กของมิ้น 🐶
+        </div>
+    `;
+}
+</script>
+
+</body>
+</html>
