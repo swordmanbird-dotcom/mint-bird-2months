@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ถึงที่รักของเขา 💖</title>
 
 <style>
 body {
   margin: 0;
   height: 100vh;
-  background: linear-gradient(135deg, #ffe6ec, #ffd6e0);
+  background: linear-gradient(135deg,#ffe6ee,#ffd1e3);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -22,15 +22,9 @@ body {
   width: 90%;
   max-width: 380px;
   padding: 24px;
-  border-radius: 28px;
+  border-radius: 30px;
   text-align: center;
-  box-shadow: 0 25px 50px rgba(0,0,0,.15);
-  animation: pop 0.8s ease;
-}
-
-@keyframes pop {
-  0% { transform: scale(.8); opacity: 0; }
-  100% { transform: scale(1); opacity: 1; }
+  box-shadow: 0 20px 40px rgba(0,0,0,.15);
 }
 
 img {
@@ -41,20 +35,15 @@ img {
 
 .text {
   font-size: 1.25rem;
-  line-height: 1.8;
   color: #ff5f8f;
-  min-height: 120px;
-}
-
-.wait {
-  font-size: .9rem;
-  opacity: .6;
+  min-height: 100px;
+  line-height: 1.7;
 }
 
 button {
-  margin-top: 18px;
-  padding: 12px 24px;
-  border-radius: 16px;
+  margin-top: 16px;
+  padding: 12px 26px;
+  border-radius: 18px;
   border: none;
   background: #ff7aa2;
   color: white;
@@ -65,68 +54,76 @@ button {
   position: fixed;
   bottom: -20px;
   font-size: 22px;
-  animation: floatUp 4s linear forwards;
+  animation: floatUp 3.5s linear forwards;
 }
 
 @keyframes floatUp {
-  0% { transform: translateY(0) scale(1); opacity: 1; }
-  100% { transform: translateY(-120vh) scale(1.8); opacity: 0; }
+  to {
+    transform: translateY(-120vh) scale(1.6);
+    opacity: 0;
+  }
 }
 </style>
 </head>
 
 <body>
 
-<audio autoplay loop>
+<!-- เพลง (เริ่มเล่นตอนกดครั้งแรก) -->
+<audio id="music" loop>
   <source src="รักมากนะ (1).mp3" type="audio/mpeg">
 </audio>
 
 <div class="card">
-  <img src="file_00000004dc072078dd50d9991ff086f.png" alt="ที่รัก">
-  <div class="text" id="text">กดเบา ๆ นะที่รัก 💕</div>
-  <div class="wait" id="wait"></div>
-  <button onclick="next()">กดตรงนี้ 💖</button>
+  <!-- รูป -->
+  <img src="file_00000004dc072078dd50d9991ff086f.png">
+
+  <div class="text" id="text">
+    กดตรงนี้สิ… เขามีอะไรจะบอก 💕
+  </div>
+
+  <button onclick="next()">กดเลย 💖</button>
 </div>
 
 <script>
-const messages = [
-  "ที่รักรู้ไหม… ตั้งแต่มีเธอ เขายิ้มง่ายขึ้นมากเลยนะ 😊",
-  "2 เดือนอาจดูไม่นาน แต่สำหรับเขา… มันโคตรพิเศษเลย",
-  "เธอคือความสบายใจ ในวันที่เขาเหนื่อยที่สุด",
-  "ขอบคุณที่อยู่ ขอบคุณที่เข้าใจ และขอบคุณที่รักเขา",
-  "บางทีเขาอาจกวน อาจดื้อ แต่รักเธอจริงนะ",
-  "ที่เรียกว่าที่รัก เพราะเธอสำคัญกว่าคำว่ารัก",
-  "เขาอยากมีเธอในทุกเดือน ทุกปี และทุกวันต่อจากนี้",
+const msgs = [
+  "ตั้งแต่มีเธอ เขารู้สึกว่าโลกนี้อ่อนโยนขึ้นมากเลย",
+  "2 เดือนอาจไม่เยอะ แต่ความรักที่มีให้เธอ… เยอะมากนะ",
+  "เธอคือรอยยิ้มในวันที่เขาเหนื่อยที่สุด",
+  "เขาอาจกวน อาจดื้อ แต่รักเธอจริง ๆ นะ",
+  "ขอบคุณที่อยู่ ขอบคุณที่เข้าใจ",
   "สุขสันต์ครบรอบ 2 เดือนนะ… ที่รักของเขา 💖",
-  "รักมากนะ ❤️ จากเขา… คนที่โชคดีที่สุดที่มีเธอ"
+  "รักมากนะ ❤️ จากเขา"
 ];
 
 let i = 0;
-const text = document.getElementById("text");
-const wait = document.getElementById("wait");
+let started = false;
 
 function next() {
-  if (i >= messages.length) return;
+  // เริ่มเพลงเมื่อกดครั้งแรก
+  if (!started) {
+    document.getElementById("music").play();
+    started = true;
+  }
 
-  text.innerHTML = "";
-  wait.innerHTML = "รอสักนิดนะ… 💗";
+  if (i >= msgs.length) return;
+
+  document.getElementById("text").innerHTML = "รอแป๊บนึงนะ 💗";
 
   setTimeout(() => {
-    wait.innerHTML = "";
-    text.innerHTML = messages[i];
+    document.getElementById("text").innerHTML = msgs[i];
     i++;
-    spawnHearts();
-  }, 3000);
+    hearts();
+  }, 1000); // ดีเลย์ 1 วิ (เร็วขึ้น)
 }
 
-function spawnHearts() {
-  for (let j = 0; j < 8; j++) {
+function hearts() {
+  for (let j = 0; j < 6; j++) {
     const h = document.createElement("div");
     h.className = "heart";
     h.innerHTML = "💗";
     h.style.left = Math.random() * 100 + "vw";
     document.body.appendChild(h);
-    setTimeout(() => h.remove(), 4000);
+    setTimeout(() => h.remove(), 3500);
   }
 }
 </script>
