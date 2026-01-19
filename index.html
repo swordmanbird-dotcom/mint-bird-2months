@@ -8,76 +8,69 @@
 <style>
 body{
   margin:0;
-  height:100vh;
+  min-height:100vh;
   background:linear-gradient(180deg,#ffe6f2,#ffd1ea);
   display:flex;
   justify-content:center;
   align-items:center;
   font-family:'Segoe UI',sans-serif;
-  overflow:hidden;
 }
 
 .card{
   background:#fff;
-  width:92%;
-  max-width:380px;
-  border-radius:28px;
-  padding:20px;
+  width:94%;
+  max-width:340px;
+  border-radius:22px;
+  padding:14px;
   text-align:center;
-  box-shadow:0 20px 40px rgba(255,105,180,.35);
-  animation:fadeIn .8s ease;
+  box-shadow:0 14px 32px rgba(255,105,180,.35);
 }
 
 img{
   width:100%;
-  border-radius:20px;
-  margin-bottom:14px;
+  max-height:38vh;
+  object-fit:cover;
+  border-radius:16px;
+  margin-bottom:10px;
 }
 
 .text{
-  font-size:1.15rem;
-  line-height:1.8;
+  font-size:0.95rem;
+  line-height:1.7;
   color:#ff5c9d;
-  min-height:120px;
-  transition:.5s;
+  min-height:90px;
 }
 
 button{
-  margin-top:16px;
   width:100%;
-  padding:14px;
+  margin-top:10px;
+  padding:11px;
   border:none;
   border-radius:999px;
   background:linear-gradient(135deg,#ff6fae,#ff3f81);
   color:#fff;
-  font-size:1.1rem;
-  box-shadow:0 8px 20px rgba(255,80,140,.5);
-  transition:.3s;
+  font-size:0.95rem;
+  box-shadow:0 6px 16px rgba(255,80,140,.45);
 }
 button:active{transform:scale(.95)}
 
 input{
   width:100%;
-  margin-top:12px;
-  padding:12px;
-  border-radius:14px;
+  margin-top:8px;
+  padding:10px;
+  border-radius:12px;
   border:1px solid #ffd1ea;
-  font-size:1rem;
+  font-size:0.9rem;
 }
 
 .heart{
   position:fixed;
-  bottom:-30px;
-  font-size:22px;
+  bottom:-20px;
+  font-size:18px;
   animation:floatUp 4s linear forwards;
 }
-
 @keyframes floatUp{
   to{transform:translateY(-120vh);opacity:0}
-}
-@keyframes fadeIn{
-  from{opacity:0;transform:scale(.9)}
-  to{opacity:1;transform:scale(1)}
 }
 </style>
 </head>
@@ -86,7 +79,11 @@ input{
 
 <div class="card">
   <img src="รักมิ้น.png" alt="ที่รักของเขา">
-  <div class="text" id="text">เขาอยากให้ที่รักค่อย ๆ กดไปนะ 💗</div>
+
+  <div class="text" id="text">
+    เขาอยากให้มิ้นค่อย ๆ กดไปนะ 💗
+  </div>
+
   <button id="btn">กดเบา ๆ 💖</button>
 
   <div id="qa" style="display:none">
@@ -109,87 +106,76 @@ const texts = [
 "อบอุ่นขึ้นได้ขนาดนี้",
 "ตั้งแต่มีมิ้นเข้ามา",
 "วันธรรมดาของเขาไม่ธรรมดาอีกเลย",
-"เขาเริ่มยิ้มกับโทรศัพท์บ่อยขึ้น",
-"เริ่มรอข้อความเดิม ๆ จากคนเดิม",
-"เริ่มคิดถึงใครบางคนทุกเช้า",
-"แม้วันที่เขาเหนื่อยมาก",
-"แค่ได้คุยกับมิ้น",
-"เขาก็เหมือนได้พักใจ",
-"เขาอาจไม่เก่ง",
-"อาจไม่สมบูรณ์แบบ",
-"แต่เขาจริงใจกับมิ้นเสมอ",
-"สองเดือนอาจดูสั้น",
-"แต่สำหรับเขา",
-"มันเต็มไปด้วยความทรงจำ",
-"เสียงหัวเราะ",
-"ความงอนเล็ก ๆ",
-"และความคิดถึงที่ไม่เคยลด",
+"เขาเริ่มตื่นมาพร้อมความคิดถึง",
+"และหลับไปพร้อมชื่อของมิ้น",
+"บางวันเขาเหนื่อยมาก",
+"แต่แค่ได้คุยกับมิ้น",
+"ทุกอย่างก็เบาลงทันที",
 "เขาชอบเวลามิ้นยิ้ม",
-"ชอบเวลามิ้นเรียกเขา",
+"ชอบเวลามิ้นเรียกชื่อเขา",
 "ชอบทุกอย่างที่เป็นมิ้น",
-"เขาอยากให้รู้ว่า…",
-"เขาเลือกมิ้นทุกวัน",
-"ไม่ใช่เพราะบังเอิญ",
-"แต่เพราะตั้งใจ",
-"ตั้งใจรัก",
-"ตั้งใจดูแล",
-"ตั้งใจอยู่ข้าง ๆ",
-"ไม่ว่าจะวันธรรมดา",
-"หรือวันที่โลกใจร้าย",
-"เขาก็ยังอยากจับมือมิ้นไว้",
+"สองเดือนที่ผ่านมา",
+"มันไม่ใช่แค่เวลา",
+"แต่มันคือความผูกพัน",
+"ที่เขาตั้งใจเก็บไว้ทุกวัน",
+"เขาอาจไม่สมบูรณ์แบบ",
+"แต่เขาจริงใจกับมิ้นเสมอ",
 "ถ้าวันไหนมิ้นเหนื่อย",
 "เขาอยากเป็นที่พัก",
 "ถ้าวันไหนมิ้นท้อ",
 "เขาอยากเป็นกำลังใจ",
-"เขาอาจไม่สัญญาว่าจะไม่ทะเลาะ",
-"แต่สัญญาว่าจะไม่ทิ้ง",
+"เขาอยากจับมือมิ้น",
+"เดินไปพร้อมกัน",
+"ช้า ๆ ก็ได้",
+"ขอแค่เป็นมิ้น",
 "สุขสันต์ครบรอบ 2 เดือนนะ",
 "ที่รักของเขา 💖",
 "ก่อนเพลงจะจบ",
 "เขาอยากฟังเสียงมิ้นบ้าง…"
 ];
 
-let i=0, lock=false, started=false;
+let i=0,lock=false,started=false;
 const textEl=document.getElementById("text");
 const btn=document.getElementById("btn");
 const music=document.getElementById("music");
 
 btn.onclick=()=>{
- if(lock) return;
- lock=true;
+  if(lock) return;
+  lock=true;
 
- if(!started){
-   music.play();
-   started=true;
- }
+  if(!started){
+    music.play();
+    started=true;
+  }
 
- setTimeout(()=>{
-   if(i<texts.length){
-     textEl.textContent=texts[i++];
-     spawnHeart();
-   }else{
-     document.getElementById("qa").style.display="block";
-     btn.style.display="none";
-   }
-   lock=false;
- },3000);
-}
+  setTimeout(()=>{
+    if(i<texts.length){
+      textEl.textContent=texts[i++];
+      spawnHeart();
+    }else{
+      document.getElementById("qa").style.display="block";
+      btn.style.display="none";
+    }
+    lock=false;
+  },3000);
+};
 
 function spawnHeart(){
- const h=document.createElement("div");
- h.className="heart";
- h.textContent="💖";
- h.style.left=Math.random()*100+"vw";
- document.body.appendChild(h);
- setTimeout(()=>h.remove(),4000);
+  const h=document.createElement("div");
+  h.className="heart";
+  h.textContent="💖";
+  h.style.left=Math.random()*100+"vw";
+  document.body.appendChild(h);
+  setTimeout(()=>h.remove(),4000);
 }
 
 function sendLine(){
- const a1=document.getElementById("a1").value;
- const a2=document.getElementById("a2").value;
- const a3=document.getElementById("a3").value;
- const msg=`คำตอบจากมิ้น 💕\n\n1) ${a1}\n2) ${a2}\n3) ${a3}`;
- window.location.href="https://line.me/R/msg/text/?"+encodeURIComponent(msg);
+  const msg=`คำตอบจากมิ้น 💕
+1) ${a1.value}
+2) ${a2.value}
+3) ${a3.value}`;
+  window.location.href=
+    "https://line.me/R/msg/text/?"+encodeURIComponent(msg);
 }
 </script>
 
